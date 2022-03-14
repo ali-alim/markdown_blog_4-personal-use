@@ -6,4 +6,4 @@
 ### Used packages:
 *dompurify, jsdom, marked, method-override, slugify*
 
-Data is saved on **localhost**
+Data is saved on the **localhost**
