@@ -1,5 +1,5 @@
 # Blog of articles 
-## Here can execute all CRUD operations: create, delete and edit the articles. 
+## Here you can execute all CRUD operations: create, delete and edit the articles. 
 ### Used technologies: 
 **Express.js, EJS, Mongoose**
 
