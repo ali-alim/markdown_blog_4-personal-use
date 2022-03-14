@@ -1,6 +1,8 @@
 const express = require('express');
+const Article = require('./models/article')
 const mongoose = require("mongoose")
-const articleRouter = require('./routes/articles')
+const articleRouter = require('./routes/articles');
+const methodOverride = require('method-override');
 const app = express();
 
 mongoose.connect('mongodb://localhost/blog',
@@ -15,27 +17,22 @@ mongoose.connect('mongodb://localhost/blog',
 app.set('view engine', 'ejs');
 
 
-app.use('/articles', articleRouter)
+
+
+//access and use form input values // REQ.BODY.parameters 
+//should come before /articles address
+app.use(express.urlencoded({extended:false}))
+app.use(methodOverride('_method'))
 
 
 
+app.get('/', async (req, res) => {
 
-app.get('/', (req, res) => {
-    const articles = [
-        {
-        title: 'First Article',
-        createdAt: new Date(),
-        description: 'artircle description'
-    },
-    {
-        title: 'Second Article',
-        createdAt: new Date(),
-        description: 'artircle description'
-    },
-
-]
+    const articles = await Article.find().sort({createdAt:'desc'})
+    console.log(articles)
     res.render("index", {articles: articles})
     
 })
 
+app.use('/articles', articleRouter)
 app.listen(5000);
