@@ -1,18 +1,15 @@
+const dotenv = require("dotenv").config();
 const express = require('express');
 const Article = require('./models/article')
 const mongoose = require("mongoose")
 const articleRouter = require('./routes/articles');
 const methodOverride = require('method-override');
+
+const port = process.env.PORT || 6000
+const connectDB = require('./config/db')
+
+connectDB()
 const app = express();
-
-mongoose.connect('mongodb://localhost/blog',
-    {
-        useNewUrlParser: true,
-        useUnifiedTopology: true
-    
-    }
-)
-
 //converts all ejs code to html
 app.set('view engine', 'ejs');
 
@@ -35,4 +32,6 @@ app.get('/', async (req, res) => {
 })
 
 app.use('/articles', articleRouter)
-app.listen(5000);
+app.listen(port, () => {
+    console.log(`connected to port ${port}`)
+});
