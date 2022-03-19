@@ -1,12 +1,15 @@
 const express = require('express')
-
 const Article = require('../models/article')
-
 //does the same as app.get()
 const router = express.Router()
 
 router.get('/new', (req,res) => {
     res.render('articles/new', {article: new Article()})
+})
+
+router.get('/edit/:id', async(req,res) => {
+    const article = await Article.findById(req.params.id)
+    res.render('articles/edit', {article: article})
 })
 
 router.get('/:slug', async (req,res) => {

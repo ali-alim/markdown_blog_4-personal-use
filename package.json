@@ -19,6 +19,7 @@
   "homepage": "https://github.com/ali-alim/markdown_blog#readme",
   "dependencies": {
     "dompurify": "^2.3.6",
+    "dotenv": "^16.0.0",
     "ejs": "^3.1.6",
     "express": "^4.17.3",
     "jsdom": "^19.0.0",
