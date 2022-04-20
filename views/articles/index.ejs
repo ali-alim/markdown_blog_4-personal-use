@@ -26,20 +26,6 @@
         flex-wrap: wrap;
       }
 
-      @media screen and (max-width: 600px) {
-        .article {
-          /* box-sizing: content-box; */
-          width: 100%;
-          display: flex;
-          flex-direction: column;
-        }
-        div a,
-        button {
-          width: 45% !important;
-          margin: 2px;
-          padding: 3px;
-        }
-      }
       @media screen and (max-width: 900px) {
         .article {
           width: 45%;
@@ -52,6 +38,30 @@
           margin: 2px;
         }
       }
+      @media screen and (max-width: 600px) {
+        .article {
+          /* box-sizing: content-box; */
+          width: calc(50%-5px);
+          display: flex;
+          flex-direction: column;
+        }
+        div a,
+        button {
+          width: 45% !important;
+          margin: 2px;
+          padding: 3px;
+        }
+      }
+
+      @media screen and (max-width: 400px) {
+        .article {
+          /* box-sizing: content-box; */
+          width: 90%;
+          display: flex;
+          flex-direction: column;
+        }
+      }
+
     </style>
     <title>My MarkDown Blog</title>
   </head>
@@ -69,7 +79,7 @@
           <%= article.createdAt.toLocaleDateString() %>
         </div>
         <div class="card-text mb-2"><%= article.description %></div>
-        <a href="/articles/<%= article.slug %>" class="btn btn-primary"
+        <a href="/articles/<%= article.slug %>" class="btn btn-primary" id="read_more"
           >Read More</a
         >
         <a href="/articles/edit/<%= article.id %>" class="btn btn-info">Edit</a>
